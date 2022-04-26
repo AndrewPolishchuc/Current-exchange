@@ -17,6 +17,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .exceptionHandling()
                 .and()
                 .authorizeRequests()
-                .antMatchers("/api/exchange/usd-ua").permitAll();
+                .antMatchers("/api/exchange/**").permitAll();
     }
 }
