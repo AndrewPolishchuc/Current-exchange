@@ -27,7 +27,7 @@ public class ExchangeDataServiceImpl implements ExchangeDataService {
 
     private final int FLUX_DELAY = 0;
 
-    private final int FLUX_PERIOD = 20;
+    private final int FLUX_PERIOD = 30;
 
     private final ExchangeUsdDataRepository exchangeUsdDataRepository;
 

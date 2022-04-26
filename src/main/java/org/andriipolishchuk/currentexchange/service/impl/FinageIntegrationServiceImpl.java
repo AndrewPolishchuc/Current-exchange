@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import org.andriipolishchuk.currentexchange.dto.*;
 import org.andriipolishchuk.currentexchange.exception.FinageBadRequestException;
 import org.andriipolishchuk.currentexchange.mapper.ActualExchangeUsdDataMapper;
-import org.andriipolishchuk.currentexchange.property.FinageProperties;
+import org.andriipolishchuk.currentexchange.config.FinageProperties;
 import org.andriipolishchuk.currentexchange.service.FinageIntegrationService;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
