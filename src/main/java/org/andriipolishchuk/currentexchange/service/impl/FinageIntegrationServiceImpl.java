@@ -1,10 +1,7 @@
 package org.andriipolishchuk.currentexchange.service.impl;
 
 import lombok.AllArgsConstructor;
-import org.andriipolishchuk.currentexchange.dto.ExchangeUsdDataDto;
-import org.andriipolishchuk.currentexchange.dto.GetFinageAverageDailyUsdDataRequestDto;
-import org.andriipolishchuk.currentexchange.dto.GetFinageAverageRequestDataResultDto;
-import org.andriipolishchuk.currentexchange.dto.GetFinageCurrentUsdDataRequestDto;
+import org.andriipolishchuk.currentexchange.dto.*;
 import org.andriipolishchuk.currentexchange.exception.FinageBadRequestException;
 import org.andriipolishchuk.currentexchange.mapper.ActualExchangeUsdDataMapper;
 import org.andriipolishchuk.currentexchange.property.FinageProperties;
@@ -62,14 +59,14 @@ public class FinageIntegrationServiceImpl implements FinageIntegrationService {
     }
 
     private Double getCurrentBTCData() {
-        ResponseEntity<GetFinageCurrentUsdDataRequestDto> response = restTemplate.exchange(
+        ResponseEntity<GetFinageCurrentBtcDataRequestDto> response = restTemplate.exchange(
                 finageProperties.getCurrentBTCData(),
                 HttpMethod.GET, null,
-                GetFinageCurrentUsdDataRequestDto.class
+                GetFinageCurrentBtcDataRequestDto.class
         );
         if (response.hasBody()) {
             if (response.getStatusCode().equals(HttpStatus.OK) && null != response.getBody()) {
-                return response.getBody().getBid();
+                return response.getBody().getPrice();
             }
         }
         throw new FinageBadRequestException();
