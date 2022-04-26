@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import org.andriipolishchuk.currentexchange.dto.*;
 import org.andriipolishchuk.currentexchange.exception.FinageBadRequestException;
 import org.andriipolishchuk.currentexchange.mapper.ActualExchangeUsdDataMapper;
-import org.andriipolishchuk.currentexchange.property.FinageProperties;
+import org.andriipolishchuk.currentexchange.config.FinageConfiguration;
 import org.andriipolishchuk.currentexchange.service.FinageIntegrationService;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
@@ -15,7 +15,7 @@ import org.springframework.web.client.RestTemplate;
 @Service
 @AllArgsConstructor
 public class FinageIntegrationServiceImpl implements FinageIntegrationService {
-    private final FinageProperties finageProperties;
+    private final FinageConfiguration finageConfiguration;
 
     private static final RestTemplate restTemplate = new RestTemplate();
 
@@ -31,7 +31,7 @@ public class FinageIntegrationServiceImpl implements FinageIntegrationService {
 
     private Double getCurrentUsdData() {
         ResponseEntity<GetFinageCurrentUsdDataRequestDto> response = restTemplate.exchange(
-                finageProperties.getCurrentUsdData(),
+                finageConfiguration.getCurrentUsdData(),
                 HttpMethod.GET, null,
                 GetFinageCurrentUsdDataRequestDto.class
         );
@@ -45,7 +45,7 @@ public class FinageIntegrationServiceImpl implements FinageIntegrationService {
 
     private Double getAverageDailyUsdData() {
         ResponseEntity<GetFinageAverageDailyUsdDataRequestDto> response = restTemplate.exchange(
-                finageProperties.getAverageDailyUsdData(),
+                finageConfiguration.getAverageDailyUsdData(),
                 HttpMethod.GET, null,
                 GetFinageAverageDailyUsdDataRequestDto.class
         );
@@ -60,7 +60,7 @@ public class FinageIntegrationServiceImpl implements FinageIntegrationService {
 
     private Double getCurrentBTCData() {
         ResponseEntity<GetFinageCurrentBtcDataRequestDto> response = restTemplate.exchange(
-                finageProperties.getCurrentBTCData(),
+                finageConfiguration.getCurrentBTCData(),
                 HttpMethod.GET, null,
                 GetFinageCurrentBtcDataRequestDto.class
         );
@@ -74,7 +74,7 @@ public class FinageIntegrationServiceImpl implements FinageIntegrationService {
 
     private Double getAverageDailyBTCData() {
         ResponseEntity<GetFinageAverageDailyUsdDataRequestDto> response = restTemplate.exchange(
-                finageProperties.getAverageDailyBTCData(),
+                finageConfiguration.getAverageDailyBTCData(),
                 HttpMethod.GET, null,
                 GetFinageAverageDailyUsdDataRequestDto.class
         );

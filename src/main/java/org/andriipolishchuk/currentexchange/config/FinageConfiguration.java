@@ -1,13 +1,13 @@
-package org.andriipolishchuk.currentexchange.property;
+package org.andriipolishchuk.currentexchange.config;
 
 import org.springframework.stereotype.Component;
 import java.time.LocalDate;
 
 @Component
-public class FinageProperties {
-    private String baseUrl = "https://api.finage.co.uk/";
+public class FinageConfiguration {
+    private final String baseUrl = "https://api.finage.co.uk/";
 
-    private String API_KEY = "API_KEY88PD7A0HWEYW5WH3M3OFAHF3ZZMCO0RP";
+    private final String API_KEY = "API_KEY88PD7A0HWEYW5WH3M3OFAHF3ZZMCO0RP";
 
     public String getCurrentUsdData() {
         return baseUrl + "last/forex/USDUAH?apikey=" + API_KEY;

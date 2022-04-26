@@ -25,9 +25,9 @@ public class ExchangeDataServiceImpl implements ExchangeDataService {
 
     private final String BTC_DATA = "BTC/USD";
 
-    private final int FLUX_DELAY = 0;
+    private final int UPDATE_DELAY = 0;
 
-    private final int FLUX_PERIOD = 20;
+    private final int UPDATE_PERIOD = 30;
 
     private final ExchangeUsdDataRepository exchangeUsdDataRepository;
 
@@ -39,7 +39,7 @@ public class ExchangeDataServiceImpl implements ExchangeDataService {
     @Override
     public Flux<String> subscribeToUsdExchangeUpdates() {
         log.info("Subscribe for usd/uah exchange");
-        return Flux.interval(Duration.ofSeconds(FLUX_DELAY), Duration.ofSeconds(FLUX_PERIOD))
+        return Flux.interval(Duration.ofSeconds(UPDATE_DELAY), Duration.ofSeconds(UPDATE_PERIOD))
                 .map(sequence -> answerFormatting(USD_DATA));
 //        return symbolUpdatesSink
 //                .asFlux()
@@ -50,7 +50,7 @@ public class ExchangeDataServiceImpl implements ExchangeDataService {
     @Override
     public Flux<String> subscribeToBtcExchangeUpdates() {
         log.info("Subscribe for usd/uah exchange");
-        return Flux.interval(Duration.ofSeconds(FLUX_DELAY), Duration.ofSeconds(FLUX_PERIOD))
+        return Flux.interval(Duration.ofSeconds(UPDATE_DELAY), Duration.ofSeconds(UPDATE_PERIOD))
                 .map(sequence -> answerFormatting(BTC_DATA));
     }
 
