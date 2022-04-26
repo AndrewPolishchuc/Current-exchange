@@ -11,9 +11,8 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Sinks;
-
 import java.time.Duration;
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -61,16 +60,7 @@ public class ExchangeDataServiceImpl implements ExchangeDataService {
             return "Данные не получены!";
         }
         return "Текущий курс: " + usdExchangeData.get().getLastPrice() + " Средний курс: " + usdExchangeData.get().getAverageDayPrice()
-            + " Дата: " + LocalTime.now().toString() + "\n";
-    }
-
-    private String answerBtcFormatting() {
-        Optional<ExchangeUsdDataDto> usdExchangeData = exchangeUsdDataRepository.findUsdExchangeData(USD_DATA);
-        if (usdExchangeData.isEmpty()) {
-            return "Данные не получены!";
-        }
-        return "Текущий курс: " + usdExchangeData.get().getLastPrice() + " Средний курс: " + usdExchangeData.get().getAverageDayPrice()
-                + " Дата: " + LocalTime.now().toString() + "\n";
+            + " Дата: " + LocalDateTime.now() + "\n";
     }
 
     @Scheduled(fixedRateString = "3000")
@@ -92,7 +82,7 @@ public class ExchangeDataServiceImpl implements ExchangeDataService {
     @Scheduled(fixedRateString = "19000")
     public void fillUpdates() {
         exchangeUsdDataRepository.saveUpdateUsdData(finageIntegrationService.getActualUsdExchangeData());
-        exchangeUsdDataRepository.saveUpdateUsdData(finageIntegrationService.getActualBtcExchangeData());
+        exchangeUsdDataRepository.saveUpdateBtcData(finageIntegrationService.getActualBtcExchangeData());
     }
 
     private void startEmmitData(List<ExchangeUsdDataDto> exchangeUsdDataDto) {

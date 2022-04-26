@@ -15,14 +15,18 @@ import java.util.Optional;
 public class ExchangeUsdDataRepositoryImpl implements ExchangeUsdDataRepository {
     protected final Cache<String, ExchangeUsdDataDto> exchangeDataCache;
 
+    private final String USD_DATA = "USD/UAH";
+
+    private final String BTC_DATA = "BTC/USD";
+
     @Override
     public void saveUpdateUsdData(ExchangeUsdDataDto exchangeUsdDataDto) {
-        exchangeDataCache.put("USD/UAH", exchangeUsdDataDto);
+        exchangeDataCache.put(USD_DATA, exchangeUsdDataDto);
     }
 
     @Override
     public void saveUpdateBtcData(ExchangeUsdDataDto exchangeUsdDataDto) {
-        exchangeDataCache.put("BTC/USD", exchangeUsdDataDto);
+        exchangeDataCache.put(BTC_DATA, exchangeUsdDataDto);
     }
 
     @Override

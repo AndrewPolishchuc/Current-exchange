@@ -23,7 +23,7 @@ public class FinageProperties {
     }
 
     public String getAverageDailyBTCData() {
-        return baseUrl + "agg/crypto/BTCUSD/1/day/" + LocalDate.now().minusDays(1) + "/" + LocalDate.now()
+        return baseUrl + "agg/crypto/BTCUSD/1/day/" + LocalDate.now() + "/" + LocalDate.now()
                 + "?apikey=" + API_KEY;
     }
 }

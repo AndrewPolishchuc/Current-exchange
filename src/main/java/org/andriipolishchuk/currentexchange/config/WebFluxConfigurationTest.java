@@ -15,8 +15,6 @@ import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import reactor.core.publisher.Sinks;
-import springfox.documentation.spring.web.readers.operation.HandlerMethodResolver;
-
 import java.util.List;
 
 @Configuration
@@ -30,33 +28,6 @@ public class WebFluxConfigurationTest {
      * This configuration needs to unwrap returned classes from Mono, Flux, and ResponseEntity
      * It allows Swagger to display entity class name correctly
      */
-    @Bean
-    @Primary
-    public HandlerMethodResolver fluxMethodResolver(TypeResolver resolver) {
-        return new HandlerMethodResolver(resolver) {
-            @Override
-            public ResolvedType methodReturnType(HandlerMethod handlerMethod) {
-                ResolvedType retType = super.methodReturnType(handlerMethod);
-
-                // Unwrapping
-                while (
-                        retType.getErasedType() == Mono.class ||
-                                retType.getErasedType() == Flux.class ||
-                                retType.getErasedType() == ResponseEntity.class
-                ) {
-                    ResolvedType type = retType.getTypeBindings().getBoundType(0);
-                    if (retType.getErasedType() == Flux.class) {
-                        // treat it as an array
-                        retType = new ResolvedArrayType(type.getErasedType(), type.getTypeBindings(), type);
-                    } else {
-                        retType = type;
-                    }
-                }
-
-                return retType;
-            }
-        };
-    }
 
     @Bean
     public TypeResolver typeResolver() {

@@ -1,6 +1,5 @@
 package org.andriipolishchuk.currentexchange.web.rest;
 
-import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.andriipolishchuk.currentexchange.dto.ExchangeUsdDataDto;
@@ -24,20 +23,20 @@ public class ExchangeDataResource {
 
     protected final ExchangeDataService exchangeDataService;
 
-    @ApiOperation(
-            value = "Getting specific USD/UAH exchange data.",
-            notes = "This API is used before SSE connection establishing or for getting exchange data."
-    )
+//    @ApiOperation(
+//            value = "Getting specific USD/UAH exchange data.",
+//            notes = "This API is used before SSE connection establishing or for getting exchange data."
+//    )
     @GetMapping(value = "/usd-ua", produces = MediaType.APPLICATION_JSON_VALUE)
     public Flux<String> subscribeToUsdExchangeUpdates() {
         log.info("Establish SSE connection for USD/UAH exchange data");
         return exchangeDataService.subscribeToUsdExchangeUpdates();
     }
 
-    @ApiOperation(
-            value = "Getting specific BTC/USD exchange data.",
-            notes = "This API is used before SSE connection establishing or for getting exchange data."
-    )
+//    @ApiOperation(
+//            value = "Getting specific BTC/USD exchange data.",
+//            notes = "This API is used before SSE connection establishing or for getting exchange data."
+//    )
     @GetMapping(value = "/btc-usd", produces = MediaType.APPLICATION_JSON_VALUE)
     public Flux<String> subscribeBtcUsdExchangeUpdates() {
         log.info("Establish SSE connection for BTC/USD exchange data");
