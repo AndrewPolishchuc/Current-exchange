@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class ExchangeUsdDataDto {
-    private Double lastPrice;
+    private double lastPrice;
 
-    private Double averageDayPrice;
+    private double averageDayPrice;
 }

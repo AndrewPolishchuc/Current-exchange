@@ -13,7 +13,7 @@ import com.github.benmanes.caffeine.cache.RemovalCause;
 @Configuration
 @Slf4j
 public class CaffeineCacheConfiguration extends CachingConfigurerSupport {
-    @Bean(name = "UsdExchangeDataCache")
+    @Bean(name = "exchangeDataCache")
     public Cache<String, ExchangeUsdDataDto> cryptoFullDataCache() {
         return buildCaffeineCacheInstance(100);
     }
