@@ -4,7 +4,7 @@ import org.springframework.stereotype.Component;
 import java.time.LocalDate;
 
 @Component
-public class FinageProperties {
+public class FinageConfiguration {
     private final String baseUrl = "https://api.finage.co.uk/";
 
     private final String API_KEY = "API_KEY88PD7A0HWEYW5WH3M3OFAHF3ZZMCO0RP";
